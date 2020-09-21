@@ -8,57 +8,27 @@ export default {
     adminPages: 'admin panel',
     userManagement: 'user management',
     adminLog: 'system log',
-    pluginManagement: 'plugin management',
     profile: 'Profile',
-    library: 'library setting',
-    manualSearch: 'manual search'
+    modulesAlert: 'modules notification',
+    modulesAlertInfo: 'information',
+    modulesAlertSetting: 'setting'
   },
   button:{
     save: 'save',
     cancel: 'cancel',
     setting: 'setting',
-    edit:'edit',
-    del:'delete',
+    edit: 'edit',
+    del: 'delete',
     update: 'update'
   },
-  library:{
-    libraries: 'libraries',
-    plugins: 'plugins',
-    enabled:'enabled',
-    disabled: 'disabled',
-  },
-  manualSearch:{
-    videoTitle: 'video title',
-    fileDir: 'file direction',
-    usePlugin: 'use plugin',
-    search: 'search',
-    title: 'title',
-    original_title: 'original title',
-    summary: 'summary',
-    studio: 'studio',
-    collections: 'collections',
-    originally_available_at: 'originally available time',
-    year: 'release year',
-    directors: 'directors',
-    category: 'category',
-    poster: 'poster',
-    thumbnail: 'thumbnail',
-  },
-  pluginAdmin:{
-    pluginName: 'plugin name',
-    processing: 'processing',
-    version: 'version',
-    content : 'content',
-    install: 'install plugin',
-    pluginGithubAddress: 'plugin Github address',
-    finish: 'install finish',
-    installing: 'plugin installing',
-    pleaseSelectVersion: 'please select version',
-    actor: 'actor'
-
+  modulesAlert: {
+    enable: 'enable',
+    notificationMethod: 'notification method',
+    notificationCourse: 'notification course',
+    selectCause: 'select course'
   },
   userManagement: {
-    createUser:' create user',
+    createUser: 'create user',
     updatePassword: 'update password',
     deleteUser: 'delete user',
     userName: 'user name',

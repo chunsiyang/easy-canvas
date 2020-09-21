@@ -2,15 +2,15 @@
 
     "APPVERSION": "APP_Dev:0.0.1",
     "WEBUI":"inspinia:2.9.2",
-    "HOST": "0.0.0.0",
+    "HOST": "127.0.0.1",
     "PORT": "9999",
     "SUPERTOKEN":"",
     "DB": {
-        "HOST": "127.0.0.1",
-        "PORT": 27017,
-        "DBNAME":"vue-python-basic",
+        "HOST": "au.mineserver.top",
+        "PORT": 27019,
+        "DBNAME":"easy-canvas",
         "USER": "root",
-        "PWD": "vue-python-basic"
+        "PWD": "general-server-assistant"
     },
     "DEBUG": true,
     "LOGGING":true,

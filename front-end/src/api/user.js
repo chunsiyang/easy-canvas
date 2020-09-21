@@ -8,6 +8,15 @@ export function login(data) {
   })
 }
 
+export function signUp(data) {
+  return request({
+    url: '/signup',
+    method: 'post',
+    data
+  })
+}
+
+
 export function getInfo() {
   return request({
     url: '/user/info',
@@ -30,9 +39,9 @@ export function updateUser(data) {
   })
 }
 
-export function generateToken() {
+export function delUser(username) {
   return request({
-    url: '/user/token',
+    url: '/user/del/' + username,
     method: 'post'
   })
 }

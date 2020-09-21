@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" auto-complete="on" class="login-form" label-position="left">
 
       <div class="title-container">
         <h3 class="title">
@@ -16,11 +16,11 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
-          type="text"
-          tabindex="1"
           auto-complete="on"
+          name="username"
+          placeholder="Username"
+          tabindex="1"
+          type="text"
         />
       </el-form-item>
 
@@ -33,10 +33,10 @@
           ref="password"
           v-model="loginForm.password"
           :type="passwordType"
-          placeholder="Password"
-          name="password"
-          tabindex="2"
           auto-complete="on"
+          name="password"
+          placeholder="Password"
+          tabindex="2"
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
@@ -44,18 +44,51 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" style="width:100%;margin-bottom:30px;" type="primary" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" style="width:100%;margin-bottom:30px;margin-left:0" @click.native.prevent="openSignUp">sign up</el-button>
 
       <div class="tips">
       </div>
-
     </el-form>
+
+    <el-dialog :visible.sync="signUpDialog" title="Sign up">
+      <el-form :model="signUpUser">
+        <el-form-item prop="username">
+          <el-input
+            ref="username"
+            v-model="signUpUser.username"
+            auto-complete="on"
+            name="username"
+            placeholder="Username"
+            tabindex="1"
+            type="text"
+          />
+        </el-form-item>
+        <el-form-item prop="password">
+          <span class="svg-container">
+            <svg-icon icon-class="password" />
+          </span>
+          <el-input
+            ref="password"
+            v-model="signUpUser.password"
+            auto-complete="on"
+            name="password"
+            placeholder="password"
+            tabindex="2"
+          />
+        </el-form-item>
+        <el-button :loading="loading" style="width:100%;margin-bottom:30px;" type="primary" @click.native.prevent="handleSignUp">Sign Up</el-button>
+
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { validUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
+import {login, signUp} from "@/api/user";
+import {getToken} from "@/utils/auth";
 
 export default {
   name: 'Login',
@@ -65,7 +98,7 @@ export default {
       // if (!validUsername(value)) {
       //   callback(new Error('Please enter the correct user name'))
       // } else {
-        callback()
+      callback()
       // }
     }
     const validatePassword = (rule, value, callback) => {
@@ -84,9 +117,11 @@ export default {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
+      signUpUser: {},
       loading: false,
       passwordType: 'password',
-      redirect: undefined
+      redirect: undefined,
+      signUpDialog: false
     }
   },
   watch: {
@@ -122,6 +157,26 @@ export default {
           console.log('error submit!!')
           return false
         }
+      })
+    },
+    openSignUp() {
+      this.signUpDialog = true
+    },
+    handleSignUp() {
+      return new Promise((resolve, reject) => {
+        signUp({ user_info: { name: this.signUpUser.username.trim(), password: this.signUpUser.password }}).then(response => {
+          // eslint-disable-next-line no-unused-vars
+          // setToken(data.token)
+          if (response.data) {
+            this.$message('sign up success')
+            this.signUpDialog = false
+          } else {
+            this.$message('user name already used')
+          }
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
       })
     }
   }

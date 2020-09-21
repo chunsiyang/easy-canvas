@@ -4,7 +4,8 @@ from app.core.aop.authority import authentication, authorization
 from app.core.model.request_model import RequestModel
 from app.core.model.respond_model import RespondModel
 from app.core.service import user_service
-from app.core.service.user_service import generate_token, update_password, get_all_user_info, get_password_from_db
+from app.core.service.user_service import update_password, get_all_user_info, get_password_from_db, \
+    del_user_by_username
 from app.tools.jwt_tools import generate_jwt, decode_jwt
 
 api = Blueprint('user_api', __name__)
@@ -48,7 +49,7 @@ def user():
         else:
             save_user_info = update_password(user_info_form)
         respond_model.message = 'success'
-        if save_user_info:
+        if user_info_form['name'] == user_info_jwt['name']:
             respond_model.token = generate_jwt(user_info_form)
         return respond_model
     respond_model.message = 'error'
@@ -84,25 +85,6 @@ def user_logout():
     return respond_model.dump_json(), 200
 
 
-@api.route('/user/token', methods=['post'])
-@authentication
-def save_token():
-    """
-        save plugin token
-    :return:
-    """
-    request_model = RequestModel(request)
-    jwt = request_model.token
-    user_info_jwt = decode_jwt(jwt)['user_info']
-    respond_model = RespondModel()
-    respond_model.message = 'success'
-    token = generate_token(user_info_jwt)
-    respond_model.data['token'] = token
-    user_info_jwt['token'] = token
-    respond_model.token = generate_jwt(user_info_jwt)
-    return respond_model
-
-
 @api.route('/setting/user/all', methods=['get'])
 @authorization('admin')
 def install_by_version():
@@ -113,3 +95,28 @@ def install_by_version():
     respond_model = RespondModel()
     respond_model.data = get_all_user_info()
     return respond_model
+
+
+@api.route('/user/del/<username>', methods=['post'])
+@authorization('admin')
+def del_user(username):
+    """
+        del user
+    :return:
+    """
+    respond_model = RespondModel()
+    respond_model.data = del_user_by_username(username)
+    return respond_model
+
+
+@api.route('/signup', methods=['post'])
+def sign_up():
+    """
+        user sign up
+    :return:
+    """
+    request_model = RequestModel(request)
+    respond_model = RespondModel()
+    respond_model.data = user_service.user_sign_up(request_model.data.get('user_info'))
+    respond_model.code = 20000
+    return respond_model.dump_json()

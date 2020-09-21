@@ -62,7 +62,6 @@ export const constantRoutes = [
     path: '/profile',
     component: Layout,
     redirect: '/profile/index',
-    hidden: true,
     children: [
       {
         path: 'index',
@@ -72,6 +71,29 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/modulesAlert',
+    component: Layout,
+    redirect: '/modulesAlert/info',
+    meta: {
+      title: 'modulesAlert',
+      icon: 'message'
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/modulesAlert/info'),
+        name: 'modulesAlertInfo',
+        meta: { title: 'modulesAlertInfo', noCache: true }
+      },
+      {
+        path: 'setting',
+        component: () => import('@/views/modulesAlert/setting'),
+        name: 'modulesAlertSetting',
+        meta: { title: 'modulesAlertSetting', noCache: true }
+      }
+    ]
+  }
 ]
 
 /**

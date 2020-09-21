@@ -1,14 +1,11 @@
 <template>
   <div>
     <el-form>
-      <el-form-item label="Name">
-        <el-input v-model="user.name" disabled/>
+      <el-form-item label="Canvas address">
+        <el-input v-model="user.canvasAddress" />
       </el-form-item>
-      <el-form-item label="Email">
-        <el-input v-model="user.email" />
-      </el-form-item>
-      <el-form-item label="password">
-        <el-input v-model="user.password" />
+      <el-form-item label="Access Token">
+        <el-input v-model="user.accessToken" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit">{{ $t('button.save') }}</el-button>
@@ -22,14 +19,12 @@ import {getLanguage} from "@/lang";
 import {generateToken, getInfo, updateUser} from "@/api/user";
 
 export default {
-  name: 'account',
+  name: 'canvas',
   data() {
     return {
       user: {
-        name: '',
-        email: '',
-        token: '',
-        password:''
+        canvasAddress: '',
+        accessToken: ''
       },
       token: ''
     }
@@ -60,6 +55,6 @@ export default {
         reject(error)
       })
     })
-  },
+  }
 }
 </script>

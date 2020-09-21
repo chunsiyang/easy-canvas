@@ -8,10 +8,10 @@ export default {
     adminPages: '管理员设置',
     userManagement: '用户管理',
     adminLog: '系统日志',
-    pluginManagement: '插件管理',
     profile: '个人中心',
-    library: '库管理',
-    manualSearch: '手动搜索'
+    modulesAlert: 'modules 更新提醒',
+    modulesAlertInfo: '信息',
+    modulesAlertSetting: '设置'
   },
   button:{
     save: '保存',
@@ -21,41 +21,6 @@ export default {
     del:'删除',
     update: '升级'
   },
-  library:{
-    libraries: '资料库',
-    plugins: '插件',
-    enabled:'启用',
-    disabled: '禁用',
-  },
-  manualSearch:{
-    videoTitle: '视频名称',
-    processing: '处理中',
-    fileDir: '文件路径',
-    usePlugin: '使用插件',
-    search:'搜索',
-    title: '标题',
-    original_title: '原始标题',
-    summary: '简介',
-    studio: '发行商',
-    collections: '集合',
-    originally_available_at: '原始发布日期',
-    year: '发布日期',
-    directors: '导演',
-    category: '分类',
-    poster: '海报',
-    thumbnail: '缩略图',
-    actor: '演员'
-  },
-  pluginAdmin:{
-    pluginName: '插件名称',
-    version: '版本',
-    content : '说明',
-    install: '安装插件',
-    pluginGithubAddress: '插件 Github 地址',
-    finish: '安装完成',
-    installing: '插件安装中',
-    pleaseSelectVersion: '请选择版本'
-  },
   userManagement: {
     createUser:' 新建用户',
     updatePassword: '更新密码',
@@ -64,6 +29,12 @@ export default {
     authority: '权限',
     password: '密码',
     saveSuccess: '用户信息保存成功'
+  },
+  modulesAlert: {
+    enable: 'enable',
+    notificationMethod: '提醒方式',
+    notificationCourse: '提醒课程',
+    selectCause: '选择课程'
   },
   profile:{
     token: '插件密函',

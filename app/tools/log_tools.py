@@ -7,7 +7,7 @@ def log(level, message, path=''):
         log to file and console
     :param level: log level
     :param message: message
-    :param path: log path (only for plugin to use)
+    :param path: log path
     :return:
     """
     """
@@ -16,7 +16,7 @@ def log(level, message, path=''):
     if path != '':
         file_name = os.path.splitext(path)[0]
         logger = logging.getLogger(path)
-        path = "log/plugin/%s.log" % path
+        path = "log/%s.log" % path
     else:
         logger = logging.getLogger("general")
         path = "log/general.log"

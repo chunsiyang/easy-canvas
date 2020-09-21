@@ -19,6 +19,25 @@ def login(user_info):
     return None
 
 
+def user_sign_up(user_info):
+    """
+        user sign up
+    :param user_info: dict user info
+    :return:
+    """
+    collection = get_collection("user")
+    if collection.find_one({'user': user_info.get('name')}):
+        return False
+    collection.insert(
+        {
+            'name': user_info.get('name'),
+            'password': get_password(user_info.get('name'), user_info.get('password')),
+            'roles': 'user'
+        }
+    )
+    return True
+
+
 def get_user(name, password):
     """
         get user by name and password
@@ -28,6 +47,15 @@ def get_user(name, password):
     """
     collection = get_collection("user")
     user_info = collection.find_one({"name": name, "password": get_password(name, password)})
+    return user_info
+
+
+def get_user_by_name(name):
+    """
+        get user by name
+    """
+    collection = get_collection("user")
+    user_info = collection.find_one({"name": name})
     return user_info
 
 
@@ -85,17 +113,6 @@ def get_password(user_name, password):
     return sha1_encode(user_name + password)
 
 
-def generate_token(user):
-    """
-        save plugin token
-    :return: token
-    """
-    token = token_urlsafe(16)
-    user['token'] = token
-    update(user)
-    return token
-
-
 def get_all_user_info():
     """
         get all user info
@@ -107,3 +124,14 @@ def get_all_user_info():
         user_info.pop('_id')
         user_info.pop('password')
     return user_infos
+
+
+def del_user_by_username(name):
+    """
+        del user by username
+    :param name username
+    :return:
+    """
+    collection = get_collection("user")
+    collection.delete_one({"name": name})
+    return True

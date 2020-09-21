@@ -62,7 +62,7 @@
 <script>
   import Kanban from '@/components/Kanban/index'
   import {getLanguage} from "@/lang";
-  import {getAllUserInfo, getInfo, updateUser} from "@/api/user";
+  import {getAllUserInfo, getInfo, updateUser, delUser} from "@/api/user";
   import store from "@/store";
 
   export default {
@@ -113,12 +113,22 @@
         this.selectRoles = userInfo.roles.split(',')
         this.userDialog = true
       },
+      del(row) {
+        new Promise((resolve, reject) => {
+          delUser(row.name).then(response => {
+            this.$message(this.$t('button.save')+'!')
+            this.refresh()
+            resolve()
+          }).catch(error => {
+            reject(error)
+          })
+        })
+      },
       submit() {
         let roles = this.selectRoles.filter(function (s) {
           return s && s.trim();
         });
         this.dialogData.roles = roles.toString();
-        debugger
         new Promise((resolve, reject) => {
           updateUser({user_info: this.dialogData}).then(response => {
             this.$message({

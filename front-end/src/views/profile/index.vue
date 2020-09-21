@@ -9,6 +9,9 @@
               <el-tab-pane label="Account" name="account">
                 <account :user="user" />
               </el-tab-pane>
+              <el-tab-pane label="Canvas" name="canvas">
+                <Canvas :user="user"/>
+              </el-tab-pane>
             </el-tabs>
           </el-card>
         </el-col>
@@ -21,10 +24,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import Account from './components/Account'
+import Canvas from './components/canvas'
 
 export default {
   name: 'Profile',
-  components: { Account },
+  components: { Account, Canvas },
   data() {
     return {
       user: {},
