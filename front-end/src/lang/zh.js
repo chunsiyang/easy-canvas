@@ -49,7 +49,7 @@ export default {
     size: '布局大小'
   },
   login: {
-    title: '系统登录',
+    title: 'EASY-CANVAS',
     logIn: '登录',
     username: '账号',
     password: '密码',

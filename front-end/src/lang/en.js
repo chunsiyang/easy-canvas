@@ -49,7 +49,7 @@ export default {
     size: 'Global Size'
   },
   login: {
-    title: 'Login Form',
+    title: 'EASY-CANVAS',
     logIn: 'Login',
     username: 'Username',
     password: 'Password',
