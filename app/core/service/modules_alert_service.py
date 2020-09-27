@@ -1,11 +1,12 @@
 import datetime
 import time
 
-from app.core.service.canvas_service import get_course, get_modules, sent_email, get_user
+from app.core.service.canvas_service import get_course, get_modules, send_canvas_email, get_user
 from app.core.service.modules_alert_history_service import get_history_by_course_id, save_modules_histories, \
     clear_history
 from app.core.service.user_service import get_user_by_name
 from app.tools.db_tools import get_collection
+from app.tools.email_tools import send_email
 
 
 def get_setting_by_username(username):
@@ -252,15 +253,17 @@ def notify_user_update(user_name, new_things):
     """
     user = get_user_by_name(user_name)
     modules_alert_setting = get_setting_by_username(user_name)
+    message = ''
+    for course_name in new_things.keys():
+        message += course_name + '\n'
+        for modules_name in new_things.get(course_name).keys():
+            message += '----' + modules_name + '\n'
+            for item_name in new_things.get(course_name).get(modules_name).keys():
+                message += '--------' + new_things.get(course_name).get(modules_name).get(item_name).get('name') + '\n'
+        message += '\n'
+    canvas_user = get_user(user)
+    message = message.replace('&', ' and ')
     if modules_alert_setting.get('setting').get('notificationMethod') == 'canvas':
-        message = ''
-        for course_name in new_things.keys():
-            message += course_name + '\n'
-            for modules_name in new_things.get(course_name).keys():
-                message += '----' + modules_name + '\n'
-                for item_name in new_things.get(course_name).get(modules_name).keys():
-                    message += '--------' + new_things.get(course_name).get(modules_name).get(item_name).get('name') + '\n'
-            message += '\n'
-        canvas_user = get_user(user)
-        message = message.replace('&', ' and ')
-        sent_email(user, canvas_user.json().get('id'), message)
+        send_canvas_email(user, canvas_user.json().get('id'), message)
+    if modules_alert_setting.get('setting').get('notificationMethod') == 'email':
+        send_email(user.get('email'), 'Canvas modules update notification from EASY-CANVAS', message)

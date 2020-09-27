@@ -79,7 +79,7 @@ def get_modules(user, course):
     return modules
 
 
-def sent_email(user, receive, message):
+def send_canvas_email(user, receive, message):
     """
         use canvas sent email
     : param user user contain canvas address and canvas access token

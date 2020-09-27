@@ -6,11 +6,17 @@
     "PORT": "9999",
     "SUPERTOKEN":"",
     "DB": {
-        "HOST": "au.mineserver.top",
-        "PORT": 27019,
+        "HOST": "127.0.0.1",
+        "PORT": 27017,
         "DBNAME":"easy-canvas",
         "USER": "root",
-        "PWD": "general-server-assistant"
+        "PWD": "easy-canvas"
+    },
+    "EMAIL": {
+        "from" : "",
+        "host": "",
+        "username": "",
+        "password": ""
     },
     "DEBUG": true,
     "LOGGING":true,
