@@ -36,7 +36,7 @@ Click the Generate token button
 
 ![](/img/token2.png)
 
-Now you have successful generate your Canvas access token, please fill it in the profile page on EASY-CANVAS, you also need to fill the 
+Now you have successfully generate your Canvas access token, please fill it in the profile page on EASY-CANVAS, you also need to fill the 
 Canvas address with your school Canvas address.
 
 ![](/img/profile.png)
