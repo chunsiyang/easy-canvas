@@ -6,7 +6,7 @@ system with the main goal of making your life easier by adding additional functi
 
 #### Features
 
-[Modules update notification](/MODULES_UPDATA_NOTIFICATION_README.md)
+[Modules update notification](/markdown/MODULES_UPDATA_NOTIFICATION_README.md)
 
 
 #### How it works
