@@ -6,6 +6,7 @@ services:
     restart: always
     ports:
       - 9999:9999
+    volumes:
       - ./config:/home/easycanvas/easy-canvas/config/
     environment:
         DB_HOST: 127.0.0.1,
