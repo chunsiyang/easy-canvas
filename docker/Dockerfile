@@ -2,7 +2,8 @@ FROM python:3.7
 
 RUN apt-get -y update \
     && apt-get install curl \
-    && curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - \
+    && curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh \
+    && bash nodesource_setup.sh \
     && apt-get install -y nodejs \
     && apt-get install -y npm
  
