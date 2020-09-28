@@ -92,19 +92,22 @@ def get_modules_from_canvas():
     settings = get_all_modules_setting()
     histories = []
     for setting in settings:
-        user_name = setting.get('user')
-        user = get_user_by_name(user_name)
-        courses = get_course(user)
-        for course in courses:
-            course_id = course.get('id')
-            modules = get_modules(user, course_id)
-            if get_history_by_course_id(course_id):
-                continue
-            history = {
-                'course': course,
-                'modules': modules
-            }
-            histories.append(history)
+        try:
+            user_name = setting.get('user')
+            user = get_user_by_name(user_name)
+            courses = get_course(user)
+            for course in courses:
+                course_id = course.get('id')
+                modules = get_modules(user, course_id)
+                if get_history_by_course_id(course_id):
+                    continue
+                history = {
+                    'course': course,
+                    'modules': modules
+                }
+                histories.append(history)
+        except Exception as e:
+            log('info', e)
     return histories
 
 
@@ -165,13 +168,11 @@ def init_modules_history():
         get and save new modules info
     :return:
     """
-    try:
-        clear_history()
-        modules_json = get_modules_from_canvas()
-        modules_dict = transform_modules_json_to_dict(modules_json)
-        save_modules_histories(list(modules_dict.values()))
-    except Exception as e:
-        log('info', e)
+    clear_history()
+    modules_json = get_modules_from_canvas()
+    modules_dict = transform_modules_json_to_dict(modules_json)
+    save_modules_histories(list(modules_dict.values()))
+
 
 
 def scheduler_check_modules_update():
