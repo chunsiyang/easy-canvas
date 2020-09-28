@@ -1,6 +1,6 @@
 from app.tools.db_tools import get_connection, get_collection
+from app.tools.init_requirement_tools import app_config
 from app.tools.sha1_tools import sha1_encode
-from main import app_config
 
 
 def init_database():

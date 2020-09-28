@@ -6,16 +6,18 @@ import logging
 # init project install packages
 from app.tools.init_requirement_tools import install_app_require
 install_app_require()
-from app.tools.init_db_tools import init_db_and_data
-init_db_and_data()
 
 from app.core.service.modules_alert_service import scheduler_check_modules_update, init_modules_history
 from app.tools.config_tools import APP_CONFIG, get_config
 from app.tools.router_tools import register_blueprints
+from app.tools.init_db_tools import init_db_and_data
 
 from flask import Flask
 from flask_cors import *
 from apscheduler.schedulers.background import BackgroundScheduler
+
+# init database and data
+init_db_and_data()
 
 app = Flask(__name__, static_folder='front-end/dist/', static_url_path='')
 app_config = get_config(APP_CONFIG)
