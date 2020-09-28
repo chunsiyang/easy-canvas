@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-form ref="form" :model="data" label-width="200px" >
+    <el-form ref="form" :model="data" label-width="200px">
       <el-form-item :label="$t('modulesAlert.enable')">
-        <el-switch v-model="modulesAlertSetting.enable"/>
+        <el-switch v-model="modulesAlertSetting.enable" />
       </el-form-item>
-      <el-form-item :label="$t('modulesAlert.notificationMethod')" >
+      <el-form-item :label="$t('modulesAlert.notificationMethod')">
         <el-radio-group v-model="modulesAlertSetting.notificationMethod">
           <el-radio label="canvas" />
           <el-radio label="email" />
@@ -23,7 +23,9 @@ export default {
   name: 'Setting',
   data() {
     return {
-      modulesAlertSetting: {},
+      modulesAlertSetting: {
+        notificationMethod: 'canvas'
+      }
     }
   },
   computed: {},
@@ -32,6 +34,9 @@ export default {
       getSetting().then(response => {
         this.modulesAlertSetting = response.data
         this.originalData = response.data
+        if (this.modulesAlertSetting.notificationMethod === undefined) {
+          this.modulesAlertSetting.notificationMethod = 'canvas'
+        }
         resolve()
       }).catch(error => {
         reject(error)
@@ -42,13 +47,13 @@ export default {
     onSubmit() {
       new Promise((resolve, reject) => {
         saveSetting(this.modulesAlertSetting).then(response => {
-          this.$message(this.$t('button.save')+'!')
+          this.$message(this.$t('button.save') + '!')
           resolve()
         }).catch(error => {
           reject(error)
         })
       })
-    },
+    }
   }
 }
 </script>
