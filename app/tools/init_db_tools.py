@@ -13,7 +13,7 @@ def init_database():
     db_list = connection.list_database_names()
     if not app_config['DB']['DB_NAME'] in db_list:
         database = connection[app_config['DB']['DB_NAME']]
-        database.add_user(app_config['DB']['DB_USER'], app_config['DB_NAME']['DB_PWD'])
+        database.add_user(app_config['DB']['DB_USER'], app_config['DB']['DB_PWD'])
     return database
 
 
