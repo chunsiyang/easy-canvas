@@ -3,13 +3,13 @@
 # ***********************************
 import logging
 
+# init project install packages
+from app.tools.init_tools import init_app
+init_app()
+
 from app.core.service.modules_alert_service import scheduler_check_modules_update, init_modules_history
 from app.tools.config_tools import APP_CONFIG, get_config
-from app.tools.init_tools import init_app
 from app.tools.router_tools import register_blueprints
-
-# init project install packages
-init_app()
 
 from flask import Flask
 from flask_cors import *
