@@ -1,6 +1,10 @@
 {
   "requirements": [
     {
+      "name": "requests",
+      "version": "release"
+    },
+    {
       "name": "flask",
       "version": "release"
     },

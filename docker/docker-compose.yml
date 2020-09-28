@@ -18,6 +18,8 @@ services:
         EMAIL_HOST": your_email_host
         EMAIL_USERNAME": you_email_username
         EMAIL_PASSWD": you_email_passwd
+    depends_on:
+      - mongo-db
   mongo-db:
     image: mongo:latest
     container_name: mongo-db

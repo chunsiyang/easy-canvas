@@ -6,7 +6,7 @@
     "PORT": "9999",
     "SUPERTOKEN":"",
     "DB": {
-        "DB_HOST": "127.0.0.1",
+        "DB_HOST": "mongo-db",
         "DB_PORT": 27017,
         "DB_NAME": "easy-canvas",
         "DB_USER": "root",
