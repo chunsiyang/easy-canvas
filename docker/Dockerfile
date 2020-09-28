@@ -1,6 +1,6 @@
 FROM python:3.7
 
-RUN apt-get -y updat \
+RUN apt-get -y update \
     && apt-get install -y nodejs \
     && apt-get install -y npm
  
