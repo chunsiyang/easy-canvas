@@ -15,10 +15,10 @@ def get_connection():
     """
     global connection
     if connection is None:
-        connection = pymongo.MongoClient(host=APP_CONF['DB']['HOST'],
-                                         port=APP_CONF['DB']['PORT'],
-                                         username=APP_CONF['DB']['USER'],
-                                         password=APP_CONF['DB']['PWD'])
+        connection = pymongo.MongoClient(host=APP_CONF['DB']['DB_HOST'],
+                                         port=APP_CONF['DB']['DB_PORT'],
+                                         username=APP_CONF['DB']['DB_USER'],
+                                         password=APP_CONF['DB']['DB_PWD'])
     return connection
 
 
@@ -29,8 +29,8 @@ def get_database():
     """
     global database
     if database is None:
-        database = get_connection()[APP_CONF['DB']['DBNAME']]
-        database.authenticate(APP_CONF['DB']['USER'], APP_CONF['DB']['PWD'])
+        database = get_connection()[APP_CONF['DB']['DB_NAME']]
+        database.authenticate(APP_CONF['DB']['DB_USER'], APP_CONF['DB']['DB_PWD'])
     return database
 
 

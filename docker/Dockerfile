@@ -8,4 +8,4 @@ RUN npm install
 RUN npm run build:prod
 WORKDIR /home/easycanvas/easy-canvas
 USER easycanvas
-CMD python3 main.py
+CMD sh docker/start.sh

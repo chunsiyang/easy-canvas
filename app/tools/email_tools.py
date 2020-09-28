@@ -9,11 +9,11 @@ from app.tools.config_tools import get_config, APP_CONFIG
 def send_email(to, subject, text):
     config = get_config(APP_CONFIG)['EMAIL']
     mail_info = {
-        "from": config['from'],
+        "from": config['EMAIL_FROM'],
         "to": to,
-        "host": config['host'],
-        "username": config['username'],
-        "password": config['password'],
+        "host": config['EMAIL_HOST'],
+        "username": config['EMAIL_USERNAME'],
+        "password": config['EMAIL_PASSWORD'],
         "subject": subject,
         "text": text,
         "encoding": "utf-8"
