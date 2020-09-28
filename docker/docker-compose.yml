@@ -6,8 +6,6 @@ services:
     restart: always
     ports:
       - 9999:9999
-    volumes:
-      - ./appConfig.json:/home/easycanvas/easy-canvas/config/appConfig.json
   mongo-db:
     image: mongo:latest
     container_name: mongo-db
