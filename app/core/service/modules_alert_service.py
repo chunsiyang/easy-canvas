@@ -7,6 +7,7 @@ from app.core.service.modules_alert_history_service import get_history_by_course
 from app.core.service.user_service import get_user_by_name
 from app.tools.db_tools import get_collection
 from app.tools.email_tools import send_email
+from app.tools.log_tools import log
 
 
 def get_setting_by_username(username):
@@ -178,52 +179,55 @@ def scheduler_check_modules_update():
     user_setting = get_all_modules_setting()
     course_modules_cache = {}
     for modules_setting in user_setting:
-        new_things = {}
-        setting = modules_setting.get('setting')
-        if setting.get('enable'):
-            course_json = get_user_modules_from_canvas(modules_setting.get('user'))
-            course_dict = transform_modules_json_to_dict(course_json)
-            course_keys = list(course_dict.keys())
-            for course_id in course_keys:
-                if course_modules_cache.get(course_id):
-                    course_history = course_modules_cache.get(course_id)
-                else:
-                    course_history = get_history_by_course_id(course_id)
-                course_modules_cache.update({course_id: course_dict.get(course_id)})
-                if not course_history:
-                    continue
-                # check course modules
-                course_canvas = course_dict.get(course_id)
-                modules_canvas_key = course_canvas.keys()
-                for modules_canvas_id in modules_canvas_key:
-                    course_history.update({})
-                    if not modules_canvas_id == 'course_id' and not modules_canvas_id == 'name':
-                        # check if modules is new
-                        modules_history = course_history.get(modules_canvas_id)
-                        modules_canvas = course_canvas.get(modules_canvas_id)
-                        item_keys = modules_canvas.keys()
-                        for item_id in item_keys:
-                            item_canvas = modules_canvas.get(item_id)
-                            if not item_id == 'name':
-                                if modules_history:
-                                    item_history = modules_history.get(item_id)
-                                    if item_canvas.get('type') == 'File' or item_canvas.get('type') == 'Page':
-                                        if item_history:
-                                            # check if item is updated
-                                            canvas_update_time = datetime.datetime.strptime(item_history.get('update_at'),
-                                                                                            "%Y-%m-%dT%H:%M:%SZ")
-                                            history_update_time = datetime.datetime.strptime(item_canvas.get('update_at'),
-                                                                                             "%Y-%m-%dT%H:%M:%SZ")
-                                            if canvas_update_time > history_update_time:
-                                                update_new_item_into_dict(course_canvas, modules_canvas,
-                                                                          item_canvas, new_things)
-                                        else:
-                                            update_new_item_into_dict(course_canvas, modules_canvas, item_canvas,
-                                                                      new_things)
-                                else:
-                                    update_new_item_into_dict(course_canvas, modules_canvas, item_canvas, new_things)
-            if not new_things == {}:
-                notify_user_update(modules_setting.get('user'), new_things)
+        try:
+            new_things = {}
+            setting = modules_setting.get('setting')
+            if setting.get('enable'):
+                course_json = get_user_modules_from_canvas(modules_setting.get('user'))
+                course_dict = transform_modules_json_to_dict(course_json)
+                course_keys = list(course_dict.keys())
+                for course_id in course_keys:
+                    if course_modules_cache.get(course_id):
+                        course_history = course_modules_cache.get(course_id)
+                    else:
+                        course_history = get_history_by_course_id(course_id)
+                    course_modules_cache.update({course_id: course_dict.get(course_id)})
+                    if not course_history:
+                        continue
+                    # check course modules
+                    course_canvas = course_dict.get(course_id)
+                    modules_canvas_key = course_canvas.keys()
+                    for modules_canvas_id in modules_canvas_key:
+                        course_history.update({})
+                        if not modules_canvas_id == 'course_id' and not modules_canvas_id == 'name':
+                            # check if modules is new
+                            modules_history = course_history.get(modules_canvas_id)
+                            modules_canvas = course_canvas.get(modules_canvas_id)
+                            item_keys = modules_canvas.keys()
+                            for item_id in item_keys:
+                                item_canvas = modules_canvas.get(item_id)
+                                if not item_id == 'name':
+                                    if modules_history:
+                                        item_history = modules_history.get(item_id)
+                                        if item_canvas.get('type') == 'File' or item_canvas.get('type') == 'Page':
+                                            if item_history:
+                                                # check if item is updated
+                                                canvas_update_time = datetime.datetime.strptime(item_history.get('update_at'),
+                                                                                                "%Y-%m-%dT%H:%M:%SZ")
+                                                history_update_time = datetime.datetime.strptime(item_canvas.get('update_at'),
+                                                                                                 "%Y-%m-%dT%H:%M:%SZ")
+                                                if canvas_update_time > history_update_time:
+                                                    update_new_item_into_dict(course_canvas, modules_canvas,
+                                                                              item_canvas, new_things)
+                                            else:
+                                                update_new_item_into_dict(course_canvas, modules_canvas, item_canvas,
+                                                                          new_things)
+                                    else:
+                                        update_new_item_into_dict(course_canvas, modules_canvas, item_canvas, new_things)
+                if not new_things == {}:
+                    notify_user_update(modules_setting.get('user'), new_things)
+        except Exception as e:
+            log('info', e)
     clear_history()
     save_modules_histories(list(course_modules_cache.values()))
 
