@@ -11,7 +11,7 @@ RUN cd /home/easycanvas \
 
 RUN cd easy-canvas/front-end \
     && npm install \
-    && npm run build:prod \
+    && npm run build:prod
 RUN cd /home/easycanvas/easy-canvas
 USER easycanvas
 CMD python3 main.py
