@@ -165,10 +165,13 @@ def init_modules_history():
         get and save new modules info
     :return:
     """
-    clear_history()
-    modules_json = get_modules_from_canvas()
-    modules_dict = transform_modules_json_to_dict(modules_json)
-    save_modules_histories(list(modules_dict.values()))
+    try:
+        clear_history()
+        modules_json = get_modules_from_canvas()
+        modules_dict = transform_modules_json_to_dict(modules_json)
+        save_modules_histories(list(modules_dict.values()))
+    except Exception as e:
+        log('info', e)
 
 
 def scheduler_check_modules_update():
