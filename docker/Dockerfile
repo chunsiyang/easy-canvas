@@ -7,5 +7,4 @@ WORKDIR  /home/easycanvas/easy-canvas/front-end
 RUN npm install 
 RUN npm run build:prod
 WORKDIR /home/easycanvas/easy-canvas
-USER easycanvas
 CMD sh docker/start.sh
