@@ -11,9 +11,9 @@ def init_database():
     connection = get_connection()
     database = None
     db_list = connection.list_database_names()
-    if not app_config['DB']['DBNAME'] in db_list:
-        database = connection[app_config['DB']['DBNAME']]
-        database.add_user(app_config['DB']['USER'], app_config['DB']['PWD'])
+    if not app_config['DB']['DB_NAME'] in db_list:
+        database = connection[app_config['DB']['DB_NAME']]
+        database.add_user(app_config['DB']['DB_USER'], app_config['DB_NAME']['DB_PWD'])
     return database
 
 
