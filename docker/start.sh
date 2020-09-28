@@ -1,20 +1,16 @@
 #!/bin/bash
-sed -i "s/127.0.0.1/$DB_HOST" /home/easycanvas/easy-canvas/config/appConfig.json
+if [ -f "/home/easycanvas/easy-canvas/config/appConfig.json" ];then
+  echo "using user appConfig"
+else
+  echo "copy default appConfig"
+  cp /home/easycanvas/easy-canvas/docker/appConfig.json /home/easycanvas/easy-canvas/config/appConfig.json
+fi
 
-sed -i "s/27017/$DB_PORT" /home/easycanvas/easy-canvas/config/appConfig.json
-
-sed -i "s/easy-canvas/$DB_NAME" /home/easycanvas/easy-canvas/config/appConfig.json
-
-sed -i "s/root/$DB_USER" /home/easycanvas/easy-canvas/config/appConfig.json
-
-sed -i "s/your_db_password/$DB_PWD" /home/easycanvas/easy-canvas/config/appConfig.json
-
-sed -i "s/your_from_email/$EMAIL_FROM" /home/easycanvas/easy-canvas/config/appConfig.json
-
-sed -i "s/your_email_host/$EMAIL_HOST" /home/easycanvas/easy-canvas/config/appConfig.json
-
-sed -i "s/you_email_username/$EMAIL_USERNAME" /home/easycanvas/easy-canvas/config/appConfig.json
-
-sed -i "s/you_email_passwd/$EMAIL_PASSWORD" /home/easycanvas/easy-canvas/config/appConfig.json
+if [ -f "/home/easycanvas/easy-canvas/config/requirements.json" ];then
+  echo "using user requirements"
+else
+  echo "copy default requirements"
+  cp /home/easycanvas/easy-canvas/docker/requirements.json /home/easycanvas/easy-canvas/config/requirements.json
+fi
 
 python3 main.py
