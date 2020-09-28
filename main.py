@@ -4,8 +4,10 @@
 import logging
 
 # init project install packages
-from app.tools.init_tools import init_app
-init_app()
+from app.tools.init_requirement_tools import install_app_require
+install_app_require()
+from app.tools.init_db_tools import init_db_and_data
+init_db_and_data()
 
 from app.core.service.modules_alert_service import scheduler_check_modules_update, init_modules_history
 from app.tools.config_tools import APP_CONFIG, get_config
