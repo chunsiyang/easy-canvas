@@ -1,0 +1,27 @@
+version: '3'
+services:
+  easy-canvas:
+    image: chunsiyang/easy_canvas:latest
+    container_name: easy-canvas
+    restart: always
+    ports:
+      - 9999:9999
+    volumes:
+      - ./appConfig.json:/home/easycanvas/easy-canvas/config/appConfig.json
+  mongo-db:
+    image: mongo:latest
+    container_name: mongo-db
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: easy-canvas
+    volumes:
+      - ./data/db:/data/db
+      - /etc/localtime:/etc/localtime
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
