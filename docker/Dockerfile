@@ -6,12 +6,10 @@ RUN apt-get -y update \
  
 RUN useradd -ms /bin/bash easycanvas
 WORKDIR  /home/easycanvas
-RUN cd /home/easycanvas \
-    && git clone --depth=1 https://github.com/chunsiyang/easy-canvas/
-
-RUN cd easy-canvas/front-end 
+RUN git clone --depth=1 https://github.com/chunsiyang/easy-canvas/
+WORKDIR  /home/easycanvas/easy-canvas/front-end 
 RUN npm install 
 RUN npm run build:prod
-RUN cd /home/easycanvas/easy-canvas
+WORKDIR /home/easycanvas/easy-canvas
 USER easycanvas
 CMD python3 main.py
