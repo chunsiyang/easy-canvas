@@ -1,7 +1,8 @@
 FROM python:3.7
 
-RUN apt install -y nodejs \
-    && apt install -y npm
+RUN apt-get -y updat \
+    && apt-get install -y nodejs \
+    && apt-get install -y npm
  
 RUN useradd -ms /bin/bash easycanvas
 WORKDIR  /home/easycanvas
