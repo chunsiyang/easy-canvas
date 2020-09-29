@@ -24,6 +24,14 @@ export function getInfo() {
   })
 }
 
+export function testCanvas(data) {
+  return request({
+    url: '/user/canvas/test',
+    method: 'post',
+    data
+  })
+}
+
 export function logout() {
   return request({
     url: '/user/logout',

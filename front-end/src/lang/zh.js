@@ -15,6 +15,7 @@ export default {
   },
   button:{
     save: '保存',
+    testCanvas: '测试Canvas',
     cancel: '取消',
     setting: '操作',
     edit:'编辑',

@@ -13,8 +13,9 @@ export default {
     modulesAlertInfo: 'information',
     modulesAlertSetting: 'setting'
   },
-  button:{
+  button: {
     save: 'save',
+    testCanvas: 'test Canvas',
     cancel: 'cancel',
     setting: 'setting',
     edit: 'edit',

@@ -39,7 +39,7 @@ def get_user(user):
     headers = {
         'Authorization': 'Bearer %s' % user.get('accessToken')
     }
-    respond = requests.get('https://canvas.sydney.edu.au/api/v1/users/self', headers=headers)
+    respond = requests.get('%s/api/v1/users/self' % user.get('canvasAddress'), headers=headers)
     return respond
 
 

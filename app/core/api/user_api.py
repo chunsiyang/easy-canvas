@@ -4,6 +4,7 @@ from app.core.aop.authority import authentication, authorization
 from app.core.model.request_model import RequestModel
 from app.core.model.respond_model import RespondModel
 from app.core.service import user_service
+from app.core.service.canvas_service import get_user
 from app.core.service.user_service import update_password, get_all_user_info, get_password_from_db, \
     del_user_by_username
 from app.tools.jwt_tools import generate_jwt, decode_jwt
@@ -120,3 +121,29 @@ def sign_up():
     respond_model.data = user_service.user_sign_up(request_model.data.get('user_info'))
     respond_model.code = 20000
     return respond_model.dump_json()
+
+
+@api.route('/user/canvas/test', methods=['post'])
+@authentication
+def test_canvas():
+    """
+        test canvas setting
+    :return: respond_model
+    """
+    request_model = RequestModel(request)
+    user = request_model.data.get('user_info')
+    respond_model = RespondModel()
+    try:
+        canvas_respond = get_user(user)
+        if canvas_respond.status_code is not 200:
+            raise Exception(canvas_respond.text)
+        respond_model.data = {
+            "state": True,
+            "message": 'Canvas test pass'
+        }
+    except Exception as e:
+        respond_model.data = {
+            "state": False,
+            "message": 'Canvas test fail: %s' % e
+        }
+    return respond_model

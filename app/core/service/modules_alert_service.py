@@ -174,7 +174,6 @@ def init_modules_history():
     save_modules_histories(list(modules_dict.values()))
 
 
-
 def scheduler_check_modules_update():
     """
         scheduler task to check modules update and send message to user
@@ -182,7 +181,9 @@ def scheduler_check_modules_update():
     """
     user_setting = get_all_modules_setting()
     course_modules_cache = {}
+    log('info', 'scheduler task check modules update start')
     for modules_setting in user_setting:
+        log('info', 'check modules update for user: %s' % modules_setting.get('user'))
         try:
             new_things = {}
             setting = modules_setting.get('setting')
@@ -230,8 +231,10 @@ def scheduler_check_modules_update():
                                         update_new_item_into_dict(course_canvas, modules_canvas, item_canvas, new_things)
                 if not new_things == {}:
                     notify_user_update(modules_setting.get('user'), new_things)
+                    log('info', 'updated modules for user: %s, updated item counts: %s' % (modules_setting.get('user'), len(new_things)))
         except Exception as e:
-            log('info', e)
+            log('info', 'check modules update fail for user: %s, error: %s' % (modules_setting.get('user'), e))
+    log('info', 'check modules update finish, clean history and save new cache')
     clear_history()
     save_modules_histories(list(course_modules_cache.values()))
 

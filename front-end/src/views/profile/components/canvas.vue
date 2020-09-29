@@ -9,6 +9,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit">{{ $t('button.save') }}</el-button>
+        <el-button @click="testCanvas">{{ $t('button.testCanvas') }}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -16,7 +17,7 @@
 
 <script>
 import {getLanguage} from "@/lang";
-import {generateToken, getInfo, updateUser} from "@/api/user";
+import {generateToken, getInfo, testCanvas, updateUser} from "@/api/user";
 
 export default {
   name: 'canvas',
@@ -44,6 +45,28 @@ export default {
         })
       })
     },
+    testCanvas() {
+      new Promise((resolve, reject) => {
+        testCanvas({user_info: this.user}).then(response => {
+          debugger
+          if(response.data.state) {
+            this.$message({
+              message: response.data.message,
+              type: 'success',
+              duration: 5 * 1000
+            })
+          }else {
+            this.$message({
+              message: response.data.message,
+              duration: 5 * 1000
+            })
+          }
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    }
   },
   mounted() {
     new Promise((resolve, reject) => {

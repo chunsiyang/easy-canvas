@@ -1,6 +1,8 @@
 import logging
 import os
 
+loggers = {}
+
 
 def log(level, message, path=''):
     """
@@ -15,21 +17,17 @@ def log(level, message, path=''):
     """
     if path != '':
         file_name = os.path.splitext(path)[0]
-        logger = logging.getLogger(path)
-        path = "log/%s.log" % path
+        if not loggers.get(path):
+            loggers[path] = logging.getLogger(path)
+            path = "log/%s.log" % path
+            init_log(loggers[path], path)
+        logger = loggers.get(path)
     else:
-        logger = logging.getLogger("general")
-        path = "log/general.log"
-    logger.setLevel(logging.INFO)
-    fh = logging.FileHandler(path)
-    formatter = logging.Formatter('%(levelname)s - %(asctime)s - %(name)s - %(message)s')
-    fh.setFormatter(formatter)
-    logger.addHandler(fh)
-
-    console = logging.StreamHandler()
-    console.setLevel(logging.INFO)
-    console.setFormatter(formatter)
-    logger.addHandler(console)
+        if not loggers.get('general'):
+            loggers['general'] = logging.getLogger("general")
+            path = "log/general.log"
+            init_log(loggers['general'], path)
+        logger = loggers.get('general')
 
     if level == 'info':
         logger.info(message)
@@ -45,3 +43,16 @@ def log(level, message, path=''):
 
     if level == 'critical':
         logger.critical(message)
+
+
+def init_log(logger, path):
+    logger.setLevel(logging.INFO)
+    fh = logging.FileHandler(path)
+    formatter = logging.Formatter('%(levelname)s - %(asctime)s - %(name)s - %(message)s')
+    fh.setFormatter(formatter)
+    logger.addHandler(fh)
+
+    console = logging.StreamHandler()
+    console.setLevel(logging.INFO)
+    console.setFormatter(formatter)
+    logger.addHandler(console)
