@@ -6,7 +6,7 @@ from app.core.model.respond_model import RespondModel
 from app.core.service import user_service
 from app.core.service.canvas_service import get_user
 from app.core.service.user_service import update_password, get_all_user_info, get_password_from_db, \
-    del_user_by_username
+    del_user_by_username, check_canvas_setting
 from app.tools.jwt_tools import generate_jwt, decode_jwt
 
 api = Blueprint('user_api', __name__)
@@ -133,17 +133,5 @@ def test_canvas():
     request_model = RequestModel(request)
     user = request_model.data.get('user_info')
     respond_model = RespondModel()
-    try:
-        canvas_respond = get_user(user)
-        if canvas_respond.status_code is not 200:
-            raise Exception(canvas_respond.text)
-        respond_model.data = {
-            "state": True,
-            "message": 'Canvas test pass'
-        }
-    except Exception as e:
-        respond_model.data = {
-            "state": False,
-            "message": 'Canvas test fail: %s' % e
-        }
+    respond_model.data = check_canvas_setting(user)
     return respond_model

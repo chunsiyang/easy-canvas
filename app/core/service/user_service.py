@@ -3,6 +3,7 @@ from secrets import token_urlsafe
 from app.tools.db_tools import get_collection
 from app.tools.log_tools import log
 from app.tools.sha1_tools import sha1_encode
+from app.core.service.canvas_service import get_user as get_canvas_user
 
 
 def login(user_info):
@@ -135,3 +136,19 @@ def del_user_by_username(name):
     collection = get_collection("user")
     collection.delete_one({"name": name})
     return True
+
+
+def check_canvas_setting(user):
+    try:
+        canvas_respond = get_canvas_user(user)
+        if canvas_respond.status_code is not 200:
+            raise Exception(canvas_respond.text)
+        return {
+            "state": True,
+            "message": 'Canvas test pass'
+        }
+    except Exception as e:
+        return {
+            "state": False,
+            "message": 'Canvas test fail: %s' % e
+        }

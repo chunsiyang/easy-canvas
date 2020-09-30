@@ -4,7 +4,7 @@ import time
 from app.core.service.canvas_service import get_course, get_modules, send_canvas_email, get_user
 from app.core.service.modules_alert_history_service import get_history_by_course_id, save_modules_histories, \
     clear_history
-from app.core.service.user_service import get_user_by_name
+from app.core.service.user_service import get_user_by_name, check_canvas_setting
 from app.tools.db_tools import get_collection
 from app.tools.email_tools import send_email
 from app.tools.log_tools import log
@@ -185,6 +185,10 @@ def scheduler_check_modules_update():
     for modules_setting in user_setting:
         log('info', 'check modules update for user: %s' % modules_setting.get('user'))
         try:
+            db_user = get_user_by_name(modules_setting.get('user'))
+            check_result = check_canvas_setting(db_user)
+            if not check_result.get('state'):
+                raise Exception(check_result.get('message'))
             new_things = {}
             setting = modules_setting.get('setting')
             if setting.get('enable'):
