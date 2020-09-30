@@ -20,7 +20,7 @@ If this app helps you please star us, your star will be the best encouragement f
 
 ### Use EASY-CANVAS host by community
 
-Access the EASY-CANVAS with follwing addree:
+Access EASY-CANVAS host by the community with the following address:
 
 https://easy-canvas.top
 
