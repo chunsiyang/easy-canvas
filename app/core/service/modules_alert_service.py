@@ -269,7 +269,7 @@ def notify_user_update(user_name, new_things):
     """
     user = get_user_by_name(user_name)
     modules_alert_setting = get_setting_by_username(user_name)
-    message = ' EASY-CANVAS modules update notification\n'
+    message = 'EASY-CANVAS modules update notification\n\n'
     for course_name in new_things.keys():
         message += course_name + '\n'
         for modules_name in new_things.get(course_name).keys():
@@ -282,4 +282,4 @@ def notify_user_update(user_name, new_things):
     if modules_alert_setting.get('setting').get('notificationMethod') == 'canvas':
         send_canvas_email(user, canvas_user.json().get('id'), message)
     if modules_alert_setting.get('setting').get('notificationMethod') == 'email':
-        send_email(user.get('email'), 'Canvas modules update notification from EASY-CANVAS', message)
+        send_email(user.get('email'), 'EASY-CANVAS modules update notification', message)
