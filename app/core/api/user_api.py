@@ -5,6 +5,7 @@ from app.core.model.request_model import RequestModel
 from app.core.model.respond_model import RespondModel
 from app.core.service import user_service
 from app.core.service.canvas_service import get_user
+from app.core.service.modules_alert_service import delete_user_setting
 from app.core.service.user_service import update_password, get_all_user_info, get_password_from_db, \
     del_user_by_username, check_canvas_setting
 from app.tools.jwt_tools import generate_jwt, decode_jwt
@@ -107,6 +108,7 @@ def del_user(username):
     """
     respond_model = RespondModel()
     respond_model.data = del_user_by_username(username)
+    delete_user_setting(username)
     return respond_model
 
 
