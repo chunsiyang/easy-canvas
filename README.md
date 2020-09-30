@@ -25,21 +25,21 @@ Please go to your Canvas Account -> Setting
 
 Click the + New Access Token button
 
-![](https://github.com/chunsiyang/easy-canvas/tree/master/img/token1.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/token1.png)
 
 Fill the purpose with a EAST-CANVAS and choose an expiration date. Please note that the shorter the expiration date, 
 the higher the security, but once the access token expires, the access token needs to be refreshed.
 
-![](https://github.com/chunsiyang/easy-canvas/tree/master/img/token2.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/token2.png)
 
 Click the Generate token button
 
-![](https://github.com/chunsiyang/easy-canvas/tree/master/img/token2.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/token3.png)
 
 Now you have successfully generate your Canvas access token, please fill it in the profile page on EASY-CANVAS, you also need to fill the 
 Canvas address with your school Canvas address.
 
-![](https://github.com/chunsiyang/easy-canvas/tree/master/img/profile.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/profile.png)
 
 Now please enjoy the easy life with EASY-CANVAS.
 
