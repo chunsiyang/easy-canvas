@@ -1,5 +1,6 @@
 from secrets import token_urlsafe
 
+from app.core.service.modules_alert_service import delete_user_setting
 from app.tools.db_tools import get_collection
 from app.tools.log_tools import log
 from app.tools.sha1_tools import sha1_encode
@@ -135,6 +136,7 @@ def del_user_by_username(name):
     """
     collection = get_collection("user")
     collection.delete_one({"name": name})
+    delete_user_setting(name)
     return True
 
 

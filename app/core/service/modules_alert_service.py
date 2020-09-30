@@ -21,6 +21,15 @@ def get_setting_by_username(username):
     return setting
 
 
+def delete_user_setting(username):
+    """
+        delete user setting
+    : param username
+    """
+    collection = get_collection("modules_alert")
+    collection.delete_one({"user": username})
+
+
 def save_user_setting(username, data):
     """
         save (insert or update) user modules alert setting
