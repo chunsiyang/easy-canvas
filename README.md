@@ -30,7 +30,7 @@ the database of EASY-CANVAS to get it to work. What we could grantee is that you
 and only used by EASY-CANVAS with no malicious intent. EASY-CANVAS is also an open-source project on Github and we
 are welcome for participation and supervision from the community.
 
-
+## Initial Setting
 First you need to generate your Canvas access token
 
 Please go to your Canvas Account -> Setting
