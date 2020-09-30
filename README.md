@@ -6,7 +6,7 @@ system with the main goal of making your life easier by adding additional functi
 
 #### Features
 
-[Modules update notification](/markdown/MODULES_UPDATA_NOTIFICATION_README.md)
+[Modules update notification](https://github.com/chunsiyang/easy-canvas/tree/master/markdown/MODULES_UPDATA_NOTIFICATION_README.md)
 
 
 #### How it works
@@ -25,21 +25,21 @@ Please go to your Canvas Account -> Setting
 
 Click the + New Access Token button
 
-![](/img/token1.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/token1.png)
 
 Fill the purpose with a EAST-CANVAS and choose an expiration date. Please note that the shorter the expiration date, 
 the higher the security, but once the access token expires, the access token needs to be refreshed.
 
-![](/img/token2.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/token2.png)
 
 Click the Generate token button
 
-![](/img/token2.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/token3.png)
 
 Now you have successfully generate your Canvas access token, please fill it in the profile page on EASY-CANVAS, you also need to fill the 
 Canvas address with your school Canvas address.
 
-![](/img/profile.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/profile.png)
 
 Now please enjoy the easy life with EASY-CANVAS.
 

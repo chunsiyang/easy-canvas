@@ -7,10 +7,10 @@ using this function you could receive a notification through email or push notif
 
 ##### To get notification through Email, you must fill you Email in the profile page in EASY-CANVAS
 
-![](/img/fill_email.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/fill_email.png)
 
 ##### To get notification through push notification you have to turn on "Conversations Created By Me" on your Canvas
 
-![](/img/push1.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/push1.png)
 
-![](/img/push2.png)
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/push2.png)
