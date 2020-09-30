@@ -95,6 +95,9 @@ def get_modules_from_canvas():
         try:
             user_name = setting.get('user')
             user = get_user_by_name(user_name)
+            check_result = check_canvas_setting(user)
+            if not check_result.get('state'):
+                raise Exception(check_result.get('message'))
             courses = get_course(user)
             for course in courses:
                 course_id = course.get('id')
@@ -107,7 +110,7 @@ def get_modules_from_canvas():
                 }
                 histories.append(history)
         except Exception as e:
-            log('info', e)
+            log('info', "init modules history fail user: %s, error: %s" %(setting.get('user'), e))
     return histories
 
 

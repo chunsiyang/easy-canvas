@@ -139,9 +139,17 @@ def del_user_by_username(name):
 
 
 def check_canvas_setting(user):
+    """
+        check canvas setting: address and access token
+    : parm user: user dict
+    :returen: dict
+            "state": True,
+            "message": 'Canvas test pass'
+        }
+    """
     try:
         canvas_respond = get_canvas_user(user)
-        if canvas_respond.status_code is not 200:
+        if canvas_respond.status_code != 200:
             raise Exception(canvas_respond.text)
         return {
             "state": True,
