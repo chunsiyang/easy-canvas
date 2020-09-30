@@ -200,14 +200,14 @@ def scheduler_check_modules_update():
                 course_keys = list(course_dict.keys())
                 for course_id in course_keys:
                     if course_modules_cache.get(course_id):
-                        course_history = course_modules_cache.get(course_id)
+                        course_canvas = course_modules_cache.get(course_id)
                     else:
-                        course_history = get_history_by_course_id(course_id)
-                    course_modules_cache.update({course_id: course_dict.get(course_id)})
+                        course_canvas = course_dict.get(course_id)
+                        course_modules_cache.update({course_id: course_dict.get(course_id)})
+                    course_history = get_history_by_course_id(course_id)
                     if not course_history:
                         continue
                     # check course modules
-                    course_canvas = course_dict.get(course_id)
                     modules_canvas_key = course_canvas.keys()
                     for modules_canvas_id in modules_canvas_key:
                         course_history.update({})
@@ -238,7 +238,7 @@ def scheduler_check_modules_update():
                                         update_new_item_into_dict(course_canvas, modules_canvas, item_canvas, new_things)
                 if not new_things == {}:
                     notify_user_update(modules_setting.get('user'), new_things)
-                    log('info', 'updated modules for user: %s, updated item counts: %s' % (modules_setting.get('user'), len(new_things)))
+                    log('info', 'updated modules for user: %s, updated course counts: %s' % (modules_setting.get('user'), len(new_things)))
         except Exception as e:
             log('info', 'check modules update fail for user: %s, error: %s' % (modules_setting.get('user'), e))
     log('info', 'check modules update finish, clean history and save new cache')
