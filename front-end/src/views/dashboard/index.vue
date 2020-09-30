@@ -8,8 +8,8 @@
     </p>
     <h4>How it works</h4>
     <p>EASY-CANVAS provide functions which are not original supported by Canvas. To achieve this EASY-CANVAS has to use your Canvas access token to communicate to your Canvas API server which means your access token must be store in the database of EASY-CANVAS to get it to work. What we could grantee is that your Canvas access token will be used and only used by EASY-CANVAS with no malicious intent. EASY-CANVAS is also an open-source project on Github and we are welcome for participation and supervision from the community.</p>
-    <p> Our Github page is <a href="https://github.com/chunsiyang/easy-canvas" style="color: #4a9ff9">https://github.com/chunsiyang/easy-canvas</a></p>
-    <p> If this app helps you please star us, your star will be the best encouragement for us</p>
+    <p> Our Github page is <a target="_blank" href="https://github.com/chunsiyang/easy-canvas" style="color: #4a9ff9"><u>https://github.com/chunsiyang/easy-canvas</u></a></p>
+    <b style="color: red"> If this app helps you please star us on Github, your star will be the best encouragement for us</b>
     <h4>How to use EASY-CANVAS</h4>
     <p>First you need to generate your Canvas access token</p>
     <p>Please go to your Canvas Account -> Setting</p>
