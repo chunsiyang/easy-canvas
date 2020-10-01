@@ -14,3 +14,8 @@ using this function you could receive a notification through email or push notif
 ![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/push1.png)
 
 ![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/push2.png)
+
+
+#### An example of email notification 
+
+![](https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/img/notification%20example.png)
