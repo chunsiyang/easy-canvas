@@ -231,9 +231,9 @@ def scheduler_check_modules_update():
                                     if item_canvas.get('type') == 'File' or item_canvas.get('type') == 'Page':
                                         if item_history:
                                             # check if item is updated
-                                            canvas_update_time = datetime.datetime.strptime(item_history.get('update_at'),
+                                            canvas_update_time = datetime.datetime.strptime(item_canvas.get('update_at'),
                                                                                             "%Y-%m-%dT%H:%M:%SZ")
-                                            history_update_time = datetime.datetime.strptime(item_canvas.get('update_at'),
+                                            history_update_time = datetime.datetime.strptime(item_history.get('update_at'),
                                                                                              "%Y-%m-%dT%H:%M:%SZ")
                                             if canvas_update_time > history_update_time:
                                                 update_new_item_into_dict(course_canvas, modules_canvas,
