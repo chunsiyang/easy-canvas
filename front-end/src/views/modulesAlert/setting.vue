@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form ref="form" :model="data" label-width="200px">
+    <el-form ref="form" :model="data" label-width="160px">
       <el-form-item :label="$t('modulesAlert.enable')">
         <el-switch v-model="modulesAlertSetting.enable" />
       </el-form-item>

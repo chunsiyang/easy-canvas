@@ -51,7 +51,7 @@
       </div>
     </el-form>
 
-    <el-dialog :visible.sync="signUpDialog" title="Sign up">
+    <el-dialog :visible.sync="signUpDialog" title="Sign up" width="80%" class="signUpDialog">
       <el-form :model="signUpUser">
         <el-form-item prop="username">
           <el-input
@@ -62,6 +62,17 @@
             placeholder="Username"
             tabindex="1"
             type="text"
+          />
+        </el-form-item>
+        <el-form-item prop="Email">
+          <el-input
+            ref="Email"
+            v-model="signUpUser.email"
+            auto-complete="on"
+            name="email"
+            placeholder="Email"
+            tabindex="1"
+            type="email"
           />
         </el-form-item>
         <el-form-item prop="password">
@@ -75,6 +86,7 @@
             name="password"
             placeholder="password"
             tabindex="2"
+            :type="passwordType"
           />
         </el-form-item>
         <el-button :loading="loading" style="width:100%;margin-bottom:30px;" type="primary" @click.native.prevent="handleSignUp">Sign Up</el-button>
@@ -164,14 +176,14 @@ export default {
     },
     handleSignUp() {
       return new Promise((resolve, reject) => {
-        signUp({ user_info: { name: this.signUpUser.username.trim(), password: this.signUpUser.password }}).then(response => {
+        signUp({ user_info: { name: this.signUpUser.username.trim(), password: this.signUpUser.password, email: this.signUpUser.email }}).then(response => {
           // eslint-disable-next-line no-unused-vars
           // setToken(data.token)
           if (response.data) {
             this.$message('sign up success')
             this.signUpDialog = false
           } else {
-            this.$message('user name already used')
+            this.$message('username already used')
           }
           resolve()
         }).catch(error => {
@@ -196,6 +208,7 @@ $cursor: #fff;
     color: $cursor;
   }
 }
+
 
 /* reset element-ui css */
 .login-container {
@@ -228,6 +241,16 @@ $cursor: #fff;
     color: #454545;
   }
 }
+
+/* sign up */
+.signUpDialog{
+  .el-input{
+    input{
+      color: black;
+    }
+  }
+}
+
 </style>
 
 <style lang="scss" scoped>

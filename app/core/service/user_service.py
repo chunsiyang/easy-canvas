@@ -27,12 +27,13 @@ def user_sign_up(user_info):
     :return:
     """
     collection = get_collection("user")
-    if collection.find_one({'user': user_info.get('name')}):
+    if collection.find_one({'name': user_info.get('name')}):
         return False
     collection.insert(
         {
             'name': user_info.get('name'),
             'password': get_password(user_info.get('name'), user_info.get('password')),
+            'email': user_info.get('email'),
             'roles': 'user'
         }
     )

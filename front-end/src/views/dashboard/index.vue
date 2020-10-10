@@ -15,19 +15,19 @@
     <p>Please go to your Canvas Account -> Setting</p>
     <p>Click the + New Access Token button</p>
     <div style="align-content: center; width: 100%">
-      <img src="../../../../img/token1.png" width="1000"/>
+      <img src="../../../../img/token1.png" width="100%"/>
       <br>
       <p>Fill the purpose with a EAST-CANVAS and choose an expiration date. Please note that the shorter the expiration date, the higher the security, but once the access token expires, the access token needs to be refreshed.</p>
       <br>
-      <img src="../../../../img/token2.png" width="500"/>
+      <img src="../../../../img/token2.png" width="100%"/>
       <br>
       <p>Click the Generate token button</p>
       <br>
-      <img src="../../../../img/token3.png" width="500"/>
+      <img src="../../../../img/token3.png" width="100%"/>
       <br>
       <p>Now you have successful generate your Canvas access token, please fill it in the profile page on EASY-CANVAS, you also need to fill the Canvas address with your school Canvas address.</p>
       <br>
-      <img src="../../../../img/profile.png" width="1000"/>
+      <img src="../../../../img/profile.png" width="100%  "/>
       <br>
       <p>Now please enjoy the easy life with EASY-CANVAS.</p>
       <br>
