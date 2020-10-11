@@ -13,6 +13,8 @@ wget https://raw.githubusercontent.com/chunsiyang/easy-canvas/master/docker/dock
 docker-compose up -d
 `
 
+access through ip:9999 default username:admin password:admin
+
 ## update
 `docker-compose pull`
 
