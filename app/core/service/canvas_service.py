@@ -66,7 +66,7 @@ def get_modules(user, course):
         for module in modules:
             items_url = module.get('items_url')
             if items_url:
-                module.update({'items': get_url(user, items_url).json()})
+                module.update({'items': get_url(user, items_url+'?per_page=100').json()})
             items = module.get('items')
             if items:
                 for item in items:
